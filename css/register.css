@@ -1,0 +1,32 @@
+.register-container{
+    height: 100vh; /*100vh de full man hinh*/
+    background-image: url(../img/117772092_2925610190993967_7322240748640119353_o.jpg);
+    background-size: cover; /*de anh khong bi phong to, cho anh no ve dung size */
+    display: flex;
+    justify-content: flex-end;
+}
+.register-container #register-form{
+    height: 100vh;
+    background-color: #fff;
+    width: 30%;
+    padding: 50px 15px;
+}
+.register-container .register-header{
+    font-size: 36px;
+    color: #827a7a;
+    font-family: sans-serif;
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+.name-wrapper, .form-action{
+    display: flex;
+    justify-content: space-between;
+    /*align-items: center;*/ /*chỉnh thẳng hàng*/
+}
+.form-action{
+    align-content: center;
+}
+.cursor-pointer{
+    cursor: pointer;
+}

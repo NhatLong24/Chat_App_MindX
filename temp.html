@@ -1,33 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=<link>, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href ="css/login.css">
-    <link rel="stylesheet" href ="css/style.css">
-</head>
-<body>
-    <div class="login-container">
-        <form id="login-form">
-            <div class="login-header">MindX Chat</div>
-            
-            
-            <div class="input-wrapper">
-                <input type="text" placeholder="Email" name="email">
-                <div class="error" id ="email-error"></div>
-            
-            </div>
-            <div class="input-wrapper">
-                <input type="text" placeholder="Password" name="password">
-                <div class="error" id ="password-error"></div>
-            </div>
-           <div class="form-action">
-               <div>Don't have an account? <span class="cursor-pointer">Login</span></div>
-                <button class="btn cursor-pointer" type="submit">login</button>
-            </div>
-        </form>
-    </div>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="./css/login.css">
+  <link rel="stylesheet" href="./css/style.css">
+  <link rel="stylesheet" href="./css/chat.css">
+</head>
+
+<body>
+  <div class="chat-container">
+    <div class="header">
+      MindX chat
+    </div>
+    <div class="main">
+      <div class="conversation-detail">
+        <div class="conversation-title">First conversation</div>
+        <div class="list-messages">
+          <div class="message mine">
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab in quod obcaecati saepe tempora nihil laborum totam nostrum, ipsum corrupti, nam cum? Aperiam in quaerat vitae. Possimus aliquam libero eligendi!</div>
+          </div>
+          <div class="message mine">
+            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab in quod obcaecati saepe tempora nihil laborum totam nostrum, ipsum corrupti, nam cum? Aperiam in quaerat vitae. Possimus aliquam libero eligendi!</div>
+          </div>
+          <div class="message their">
+            <div class="owner">abc@gmail.com</div>
+            <div class="content">Hello world</div>
+          </div>
+        </div>
+        <form id="send-message-form">
+          <div class="input-wrapper">
+            <input type="text" 
+            placeholder="Type a message" 
+            name="message"></input>
+          </div>
+          <button type="Submit">Send</button>
+        </form>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>

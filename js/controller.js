@@ -27,12 +27,14 @@ controller.register = (data) => {
       model.register(data)
   }
 }
-
 controller.login = ({email, password}) => {
-    view.setErrorMessage('email-error', email ==='' ? 'Please input your email': '');
-    view.setErrorMessage('password-error', password ==='' ? 'Please input your password': '');
-    if (email !=='' && password !=='')
-    {
-        model.login({email, password});
-    }
+  view
+  .setErrorMessage('email-error', 
+  email === '' ? 'Please input your email' : '')
+  view
+  .setErrorMessage('password-error', 
+  password === '' ? 'Please input your password' : '')
+  if(email !== '' && password !== '') {
+    model.login({email,password})
+  }
 }

@@ -1,8 +1,8 @@
 const component = {}
-/* component là nơi lưu code html để chạy qua các trang */
-component.welcomePage =`<h1> welcome to my chat</h1>` // là 1 đoặn html
-
-component.registerPage =`
+component.welcomePage = `
+  <h1>Welcome to my chat app</h1>
+`
+component.registerPage = `
 <div class="register-container">
 <form id="register-form">
   <div class="register-header">MindX chat</div>
@@ -36,8 +36,9 @@ component.registerPage =`
 </div>
 
 `
+
 component.loginPage = `
-<div class="login-container">
+  <div class="login-container">
     <form id="login-form">
       <div class="login-header">MindX chat</div> 
       <div class="input-wrapper">
@@ -50,11 +51,31 @@ component.loginPage = `
       </div>
       <div class="form-action">
         <div>Don't have account ? <span class="cursor-pointer">Register</span> </div>
-        <button id='redirect-to-chatScreen' class="btn cursor-pointer" type="submit">login</button>
+        <button class="btn cursor-pointer" type="submit">login</button>
       </div>
     </form>
   </div>
 `
-component.chatScreen = `
-<div id="welcome-user"></div>
+component.chatPage = `
+<div class="chat-container">
+<div class="header">
+  MindX chat
+</div>
+<div class="main">
+  <div class="conversation-detail">
+    <div class="conversation-title">First conversation</div>
+    <div class="list-messages">
+      
+    </div>
+    <form id="send-message-form">
+      <div class="input-wrapper">
+        <input type="text" 
+        placeholder="Type a message" 
+        name="message"></input>
+      </div>
+      <button type="Submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+    </form>
+  </div>
+</div>
+</div>
 `

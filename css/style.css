@@ -1,34 +1,28 @@
-/* *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-} */
-/*cach reset lai thuoc tinh cua css*/
 *{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
-
-.input-wrapper input{ /*dành riêng cho thẻ input*/
-    padding: 10px 20px;
-    border: 1px solid #dbdbdb; /*tạo viền là 1px có màu có solid (rắn) ...*/
-    border-radius: 5px; /*tạo đường viền tròn có 3px*/
-    width: 100%; /*cho độ rộng tối đa*/
-    margin-bottom: 2px; /*khoảng cách các thẻ input cách nhau*/
-    outline: none; /*bỏ cái viền xanh mặc định khi ta click thẻ input về là bình thường*/
+.input-wrapper input{
+  padding: 10px 20px;
+  border: 1px solid #dbdbdb;
+  border-radius: 5px;
+  width: 100%;
+  outline: none;
 }
-.input-wrapper{
-    margin-bottom: 10px;
-
+.input-wrapper {
+  margin-bottom: 10px;
 }
-.btn{
-    padding: 10px 20px;
-    background: #037bfe;
-    color: #fff;
-    border-radius: 3px;
-    border-width: 1px;
+.btn {
+  padding: 8px 20px;
+  background: #037BFE;
+  color: #fff;
+  border-radius: 3px;
+  border-width: 1px;
+}
+.cursor-pointer{
+  cursor: pointer;
 }
 .error{
-    color: red;
+  color: red;
 }

@@ -31,6 +31,10 @@
   position: relative;
 }
 #send-message-form button{
+  border: none;
+  background: transparent;
+  color: #2669a3;
+  font-size: 1.5rem;
   position: absolute;
   right: 10px;
   top: 23px;
@@ -46,6 +50,7 @@
   padding: 4px 8px;
   border-radius: 4px;
   max-width: 45%;
+  word-break: break-all;
 }
 .list-messages .message.mine .content{
   background-color: #007cfd;
@@ -61,6 +66,7 @@
 }
 .chat-container .list-messages{
   padding: 10px;
+  overflow-y: auto;
 }
 .fa-send, .fa-paper-plane {
   color: blue;
@@ -68,3 +74,7 @@
   content: "\f1d8";
   font-size: 22px;
 }
+/* rem = 16px?
+px
+em = phu thuoc fort size cha
+*/

@@ -40,21 +40,21 @@ view.setActiveScreen = (screenName) => {
         e.preventDefault()
         const message = {
           content: sendMessageForm.message.value,
-          owner: model.currentUser.email
+          owner: model.currentUser.email,
+          createdAt: new Date().toISOString(),
         }
-        const messageFromBot = {
-          content: sendMessageForm.message.value,
-          owner: 'Bot'
+        
+        if (sendMessageForm.message.value.trim()!=='')
+        { 
+          // view.addMessage(message)
+          // // set gia tri de cho khung sau khi nhap chu nó sẽ tự xóa
+          
+          model.addMessage(message);
         }
-        if (sendMessageForm.message.value!=='')
-        {
-          view.addMessage(message)
-          view.addMessage(messageFromBot)
-        }
-        else{
-          console.log('error');
-        }
+        sendMessageForm.message.value ='';
         })
+        model.getConversations();
+        model.listenConversationChange();
     break;
   }
 }
@@ -78,4 +78,14 @@ view.addMessage = (message) => {
     `
   }
   document.querySelector('.list-messages').appendChild(messageWrapper)
+  //view.scrollToEndElement();
+}
+view.showCurrentConversation = () => {
+  for(message of model.currentConversation.messages){
+    view.addMessage(message);
+  }
+}
+view.scrollToEndElement =() => {
+  const element = document.querySelector('.list-messages');
+  element.scrollTop = element.scrollHeight;
 }

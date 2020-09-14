@@ -38,3 +38,30 @@ controller.login = ({email, password}) => {
     model.login({email,password})
   }
 }
+controller.createConversation = ({title, email}) => {
+  if(title.trim() === '') {
+    view
+    .setErrorMessage('create-conversation-title-error', 'Please input title')
+  } else {
+    view
+    .setErrorMessage('create-conversation-title-error', '')
+  }
+  if(email.trim() === '') {
+    view
+    .setErrorMessage('create-conversation-email-error', 'Please input email')
+  } else {
+    view
+    .setErrorMessage('create-conversation-email-error', '')
+  }
+  if(title.trim() !== '' && email.trim() !== '') {
+    model.createConversation({title, email})
+  }
+}
+controller.addUser = (email) => {
+  if(email.trim() === '') {
+    view.setErrorMessage('email-error', 'Please input email')
+  } else {
+    view.setErrorMessage('email-error', '')
+    model.addUser(email)
+  }
+}

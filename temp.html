@@ -16,19 +16,17 @@
       MindX chat
     </div>
     <div class="main">
+      <div class="aside-left">
+        <div class="create-conversation">
+          <button class="btn cursor-pointer" 
+          id="create-conversation">+ New conversation</button>
+        </div>
+        <div class="list-conversations">
+        </div>
+      </div>
       <div class="conversation-detail">
         <div class="conversation-title">First conversation</div>
         <div class="list-messages">
-          <div class="message mine">
-            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab in quod obcaecati saepe tempora nihil laborum totam nostrum, ipsum corrupti, nam cum? Aperiam in quaerat vitae. Possimus aliquam libero eligendi!</div>
-          </div>
-          <div class="message mine">
-            <div class="content">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ab in quod obcaecati saepe tempora nihil laborum totam nostrum, ipsum corrupti, nam cum? Aperiam in quaerat vitae. Possimus aliquam libero eligendi!</div>
-          </div>
-          <div class="message their">
-            <div class="owner">abc@gmail.com</div>
-            <div class="content">Hello world</div>
-          </div>
         </div>
         <form id="send-message-form">
           <div class="input-wrapper">
@@ -36,11 +34,24 @@
             placeholder="Type a message" 
             name="message"></input>
           </div>
-          <button type="Submit">Send</button>
+          <button type="Submit"><i class="fa fa-paper-plane" aria-hidden="true"></i></button>
+        </form>
+      </div>
+      <div class="aside-right">
+        <div class="list-users">
+          <div class="user-email">khiemnb@gmail.com</div>
+          <div class="user-email">khiemnb2khiemnb2khiemnb2@gmail.com</div>
+        </div>
+        <form class="mt-1" id="add-user-form">
+          <div class="input-wrapper">
+            <input type="text" name="email" placeholder="Friend email">
+            <div class="error" id="email-error"></div>
+          </div>
+          <button class="btn">Add</button>
         </form>
       </div>
     </div>
-  </div>
+    </div>
 </body>
 
 </html>

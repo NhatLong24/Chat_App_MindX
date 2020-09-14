@@ -1,7 +1,7 @@
 const model = {}
 model.currentUser = undefined
-model.conversations =[]
-model.currentConversation= undefined
+model.conversations = []
+model.currentConversation = undefined
 model.register = async (data) => {
   try {
     const response = await firebase.auth()
@@ -18,73 +18,84 @@ model.register = async (data) => {
 model.login = async ({email, password}) => {
   try {
     firebase.auth().signInWithEmailAndPassword(email, password)
-     console.log(response)
-     if(response && response.user.emailVerified) {
-       // VAO MAN CHAT
-       model.currentUser = {
-         email: response.user.email,
-         displayName: response.user.displayName
-       }
-       view.setActiveScreen('chatPage')
-     } else {
-       alert('Please verify your email')
-     }
   } catch(err) {
     alert(err.message)
     console.log(err)
   }
 }
-model.loadConversation = () => {
-    firebase.firestore.collection(model.collectionName).where('user','array-contains',model.currentUser.email).get().then(res => {
-        const data = utils.getDataFromDocs(res.docs)
-        if (data.length >0){
-          model.currentConversation = data [0]
-          view.showCurrenConversation()
-        }
-        console.log(data);
-    })
-};
-model.addMessage = (message) =>{
-  const dataToUpdate ={
-    messages: firebase.firestore.FieldValue.arrayUnion (message),
-  }
-  firebase.firestore().collection('conversations').doc(model.currentConversation.id).update(dataToUpdate);
-}
-// model.listenConversationChange = () => {
-//   firebase.firestore().collection(model.collectionName).where('user','array-contains',model.currentUser.email).onSnapshot((res)=> {
-//     const docChanges = res.docChanges();
-//     console.log(docChanges);
-//   });
-// }
 model.getConversations = async () => {
-  // luu lai thong tin tu firebase
-  console.log('model.getConversation');
-  const response= await firebase.firestore().collection('conversations').where('users','array-contains',model.currentUser.email).get()
-  console.log(getManyDocument(response));
-  model.conversations = getManyDocument(response);
-  if(model.conversations.length > 0){
-    model.currentConversation= model.conversations[0];
-    view.showCurrentConversation();
+  const response = await firebase.firestore().collection('conversations').
+  where('users','array-contains',model.currentUser.email).get()
+  model.conversations = getManyDocument(response)
+  if(model.conversations.length > 0) {
+    model.currentConversation = model.conversations[0]
+    view.showCurrentConversation()
+    view.showConversations()
   }
-
 }
-model.listenConversationChange=() => {
-  let IsFisRun =true;
-  firebase.firestore().collection('conversations').where('users','array-contains',model.currentUser.email).onSnapshot((snapShot)=>{
-  if(IsFisRun){
-    IsFisRun = false;
-    return;
+model.addMessage = (message) => {
+  dataToUpdate = {
+    messages: firebase.firestore.FieldValue.arrayUnion(message)
   }
-  console.log(snapShot.docChanges());
-  for ( oneChanges of snapShot.docChanges()) {
-    const docData = getOneDocument(oneChanges.doc)
-    if (docData.id === model.currentConversation.id)
-    {
-      model.currentConversation = docData;
-      view.addMessage(model.currentConversation.messages[model.currentConversation.messages.length-1]);
-      view.scrollToEndElement();
+  firebase.firestore().collection('conversations')
+  .doc(model.currentConversation.id).update(dataToUpdate)
+}
+model.listenConversationChange = () => {
+  let isFistRun = true
+  firebase.firestore().collection('conversations').
+  where('users', 'array-contains', model.currentUser.email).
+  onSnapshot((snapshot) => {
+    if(isFistRun) {
+      isFistRun = false
+      return
     }
+    for(oneChange of snapshot.docChanges()) {
+      const docData = getOneDocument(oneChange.doc)
+      if(oneChange.type === 'modified') {
+        if(docData.id === model.currentConversation.id) {
+          if(model.currentConversation.users.length !== docData.users.length) {
+            view.addUser(docData.users[docData.users.length - 1])
+            view.addUserInConversation(docData.users.length)
+
+          } else {
+            view
+            .addMessage(docData.messages[docData.messages.length-1])
+            view.scrollToEndElement()
+          }
+          model.currentConversation = docData
+        }
+        for(let i = 0; i < model.conversations.length; i++) {
+          if(model.conversations[i].id === docData.id) {
+            model.conversations[i] = docData
+          }
+        }
+        if(docData.messages[docData.messages.length-1].owner !== model.currentUser.email)
+        {
+          view.showNotification(docData.id);
+        }
+        
+      }
+      if(oneChange.type === 'added') {
+        model.conversations.push(docData)
+        view.addConversation(docData)
+      }
+    }
+  })
+}
+model.createConversation = ({title, email}) => {
+  const dataToCreate = {
+    title,
+    createdAt: new Date().toISOString(),
+    messages: [],
+    users: [email, model.currentUser.email]
   }
-  
-  });
+  firebase.firestore().collection('conversations').add(dataToCreate)
+  view.setActiveScreen('chatPage', true)
+}
+model.addUser = (email) => {
+  const dataToUpdate = {
+    users: firebase.firestore.FieldValue.arrayUnion(email)
+  }
+  firebase.firestore().collection('conversations')
+  .doc(model.currentConversation.id).update(dataToUpdate)
 }
